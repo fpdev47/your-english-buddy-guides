@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Your English Buddy · Adverbios de Frecuencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdf9ec; --line:#bcd6ea; --margin:#e79ba0; --ink:#2b3a55;
+  --accent:#185C60; --accent2:#2E8A82; --accent-soft:#e4f0ee;
+  --good:#3f9142; --bad:#c0392b; --sticky:#fff6c9;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; font-family:'Shantell Sans',sans-serif; color:var(--ink);
+  background:#dfe9f3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23c9d8e8'/%3E%3C/svg%3E");
+  padding:24px 8px 60px;
+}
+.notebook{
+  max-width:880px; margin:0 auto; background:var(--paper); border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2); position:relative; overflow:hidden;
+  background-image:
+    linear-gradient(90deg, transparent 0 55px, var(--margin) 55px 57px, transparent 57px),
+    repeating-linear-gradient(var(--paper) 0 34px, var(--line) 34px 35px);
+  background-position:0 70px;
+}
+.spirals{display:flex; gap:14px; padding:10px 20px 0; }
+.spirals span{width:14px;height:14px;border-radius:50%;background:var(--accent);opacity:.55;box-shadow:inset 0 2px 3px rgba(0,0,0,.35);}
+header.top{padding:18px 30px 6px 70px;}
+h1{font-size:2rem; margin:0 0 4px; color:var(--accent);}
+.sub{margin:0 0 6px; font-size:1.05rem; color:var(--accent2);}
+.legend{padding:6px 30px 10px 70px; font-size:.9rem; color:#556;}
+.section-head{margin:22px 30px 10px 70px;}
+.section-head h2{color:var(--accent); font-size:1.5rem; margin:0 0 6px; border-bottom:2px solid var(--accent2); display:inline-block; padding-bottom:2px;}
+.instructions{
+  background:var(--accent-soft); border-left:4px solid var(--accent);
+  padding:8px 14px; border-radius:0 8px 8px 0; font-size:1.02rem; margin-top:4px;
+}
+.content{padding:0 30px 30px 70px;}
+.exercise{
+  background:var(--sticky); border:1px solid #e6d98a; border-radius:8px;
+  padding:12px 16px; margin:14px 0; box-shadow:2px 3px 6px rgba(0,0,0,.12);
+}
+.exercise .num{font-weight:700; color:var(--accent);}
+.opt{display:block; margin:6px 0; cursor:pointer;}
+.opt input{margin-right:8px; accent-color:var(--accent);}
+.clue{display:inline-block; background:#fff; border:1px dashed var(--accent); color:var(--accent); border-radius:6px; padding:2px 8px; margin-right:8px; font-weight:700;}
+input[type=text]{
+  font-family:'Shantell Sans',sans-serif; font-size:1.05rem; padding:6px 8px; width:100%;
+  border:none; border-bottom:2px dotted var(--accent); background:transparent;
+}
+input[type=text]:focus{outline:none; border-bottom:2px solid var(--accent);}
+button.check{
+  margin-top:8px; background:var(--accent); color:#fff; border:none;
+  padding:6px 14px; border-radius:6px; cursor:pointer; font-size:.95rem; font-family:'Shantell Sans',sans-serif;
+}
+button.check:hover{background:var(--accent2);}
+.feedback{margin-top:6px; font-weight:700;}
+.feedback.ok{color:var(--good);}
+.feedback.no{color:var(--bad);}
+.tip{border-bottom:2px dotted var(--accent2); cursor:help; position:relative; color:var(--accent2); font-weight:700;}
+.tip:hover .balloon{display:block;}
+.balloon{
+  display:none; position:absolute; bottom:120%; left:0; background:var(--accent); color:#fff;
+  padding:6px 10px; border-radius:6px; font-size:.85rem; white-space:nowrap; z-index:5;
+}
+.balloon:after{content:""; position:absolute; top:100%; left:14px; border:6px solid transparent; border-top-color:var(--accent);}
+.why{font-size:.88rem; font-style:italic; color:var(--ink); margin-top:4px; opacity:.85;}
+.theory{margin:0 30px 10px 70px; background:#fff; border:2px dashed var(--accent2); border-radius:10px; padding:16px 20px 20px;}
+.theory h2{color:var(--accent); margin:0 0 8px; font-size:1.4rem;}
+.theory h3{color:var(--accent); margin:20px 0 8px; font-size:1.15rem;}
+.intro{margin:4px 0 12px; font-size:1.03rem; line-height:1.4;}
+.scale{display:flex; flex-direction:column; gap:9px; margin:8px 0 4px;}
+.scale-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.pct{width:50px; text-align:center; font-weight:700; padding:4px 0; border-radius:7px; color:#fff; font-size:.85rem; transform:rotate(-2deg); flex-shrink:0;}
+.adv{padding:4px 12px; border-radius:14px 4px 14px 4px; font-weight:700; color:#fff; font-size:.92rem; white-space:nowrap; transform:rotate(1deg); flex-shrink:0;}
+.scale-ex{font-size:.96rem;}
+.lvl1{background:#185C60;} .lvl2{background:#2E8A82;} .lvl3{background:#d97b3f;}
+.lvl4{background:#5a9c5f;} .lvl5{background:#9a5aa0;} .lvl6{background:#7a5c4f;}
+.wordorder .row{display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:10px 0; padding:8px; background:var(--accent-soft); border-radius:8px;}
+.wordorder .lbl{font-size:.78rem; font-weight:700; color:var(--accent); width:64px; flex-shrink:0;}
+.chip{padding:4px 10px; border-radius:8px; font-weight:700; color:#fff; font-size:.82rem; white-space:nowrap;}
+.chip-subj{background:#185C60;} .chip-verb{background:#d97b3f;} .chip-adv{background:#5a9c5f;}
+.chip-be{background:#9a5aa0;} .chip-aux{background:#7a5c4f;}
+.arrow{color:var(--ink); font-weight:700;}
+.wordorder .example{margin-left:6px; font-style:italic; font-size:.94rem;}
+.postits{display:flex; flex-wrap:wrap; gap:18px; margin:14px 4px 6px;}
+.postit{width:225px; padding:14px 12px 10px; border-radius:3px; box-shadow:3px 5px 9px rgba(0,0,0,.2); font-size:.9rem; position:relative;}
+.postit:nth-child(1){background:#ffd9d9; transform:rotate(-3deg);}
+.postit:nth-child(2){background:#fff2ad; transform:rotate(2deg);}
+.postit:nth-child(3){background:#cfe8ff; transform:rotate(-2deg);}
+.postit:nth-child(4){background:#d7f3d2; transform:rotate(3deg);}
+.postit:nth-child(5){background:#e3d9ff; transform:rotate(-1deg);}
+.postit::before{content:"📌"; position:absolute; top:-12px; left:50%; transform:translateX(-50%); font-size:1.05rem;}
+.postit b{display:block; margin-bottom:5px; color:var(--ink);}
+.postit .wrong{color:var(--bad); text-decoration:line-through; display:block;}
+.postit .right{color:var(--good); display:block; font-weight:700; margin-top:2px;}
+.freq-note{background:var(--sticky); border:1px dashed #cbb955; border-radius:8px; padding:10px 14px; margin-top:14px; font-size:.98rem;}
+.site-footer{
+  background:var(--accent); color:#dcebe9; text-align:center;
+  padding:20px 20px; font-size:.9rem; margin-top:24px;
+}
+.site-footer strong{color:#a8d76c;}
+.tiktok-follow{display:flex; align-items:center; justify-content:center; gap:7px; margin-top:10px;}
+.tiktok-follow svg{fill:#a8d76c; flex-shrink:0;}
+.tiktok-follow a{color:#a8d76c; font-weight:700; text-decoration:none; font-size:.9rem;}
+.tiktok-follow a:hover{text-decoration:underline;}
+.academy{
+  margin:26px 30px 10px 70px; background:#fff; border:2px dashed var(--accent2); border-radius:10px;
+  padding:18px 20px; text-align:center;
+}
+.academy h2{color:var(--accent); font-size:1.25rem; margin:0 0 6px;}
+.academy p{margin:0 0 14px; font-size:.96rem; line-height:1.5;}
+.academy-btn{
+  display:inline-block; background:var(--accent); color:#fff; font-weight:700; text-decoration:none;
+  padding:9px 20px; border-radius:24px; font-size:.92rem; border:2px solid var(--accent);
+}
+.academy-btn:hover{background:#fff; color:var(--accent);}
+
+/* ── Responsive ── */
+@media (max-width:700px){
+  .notebook{
+    background-image:
+      linear-gradient(90deg, transparent 0 22px, var(--margin) 22px 24px, transparent 24px),
+      repeating-linear-gradient(var(--paper) 0 34px, var(--line) 34px 35px);
+  }
+  header.top{padding:16px 16px 6px 34px;}
+  .legend{padding:6px 16px 10px 34px;}
+  .section-head{margin:20px 16px 10px 34px;}
+  .theory{margin:0 16px 10px 34px; padding:14px 14px 16px;}
+  .content{padding:0 16px 26px 34px;}
+  .reset-bar, .site-footer{padding-left:16px; padding-right:16px;}
+  .academy{margin:22px 16px 10px 34px; padding:14px 14px;}
+  h1{font-size:1.5rem;}
+  .section-head h2{font-size:1.25rem;}
+  .theory h2{font-size:1.2rem;}
+  .theory h3{font-size:1.05rem;}
+  .postit{width:100%; max-width:260px;}
+  .wordorder .lbl{width:auto;}
+  .exercise{padding:10px 12px;}
+}
+@media (max-width:380px){
+  .spirals{padding:8px 12px 0;}
+  .spirals span{width:10px;height:10px;}
+}
+</style>
+</head>
+<body>
+<div class="notebook">
+  <div class="spirals">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <header class="top">
+    <h1>📓 Adverbs of Frequency</h1>
+    <p class="sub">Your English Buddy — Present Simple + Adverbs of Frequency (A1)</p>
+  </header>
+  <p class="legend">💡 Hover over the underlined words to see their meaning and pronunciation.</p>
+
+  <div class="theory">
+    <h2>📝 What are Adverbs of Frequency?</h2>
+    <p class="intro">An <b>adverb</b> is a word that adds extra information about a verb — it usually tells us <i>how</i>, <i>when</i>, or <i>how often</i> something happens. <b>Adverbs of frequency</b> answer the question <b>"How often...?"</b> They go on a scale from 100% (it always happens) to 0% (it never happens).</p>
+
+    <div class="scale">
+      <div class="scale-row"><span class="pct lvl1">100%</span><span class="adv lvl1">always</span><span class="scale-ex">I <b>always</b> drink coffee in the morning.</span></div>
+      <div class="scale-row"><span class="pct lvl2">~90%</span><span class="adv lvl2">usually</span><span class="scale-ex">She <b>usually</b> walks her dog after school.</span></div>
+      <div class="scale-row"><span class="pct lvl3">~70%</span><span class="adv lvl3">often</span><span class="scale-ex">He <b>often</b> plays the guitar at night.</span></div>
+      <div class="scale-row"><span class="pct lvl4">~50%</span><span class="adv lvl4">sometimes</span><span class="scale-ex">They <b>sometimes</b> cook dinner together.</span></div>
+      <div class="scale-row"><span class="pct lvl5">~10%</span><span class="adv lvl5">hardly ever / rarely / seldom</span><span class="scale-ex">She <b>hardly ever</b> loses her keys.</span></div>
+      <div class="scale-row"><span class="pct lvl6">0%</span><span class="adv lvl6">never</span><span class="scale-ex">We <b>never</b> miss the school bus.</span></div>
+    </div>
+
+    <h3>📐 Word Order</h3>
+    <div class="wordorder">
+      <div class="row">
+        <span class="lbl">POSITIVE</span>
+        <span class="chip chip-subj">SUBJECT</span><span class="arrow">→</span>
+        <span class="chip chip-adv">ADVERB</span><span class="arrow">→</span>
+        <span class="chip chip-verb">VERB</span>
+        <span class="example">She <u>often</u> reads books.</span>
+      </div>
+      <div class="row">
+        <span class="lbl">WITH "BE"</span>
+        <span class="chip chip-subj">SUBJECT</span><span class="arrow">→</span>
+        <span class="chip chip-be">BE</span><span class="arrow">→</span>
+        <span class="chip chip-adv">ADVERB</span>
+        <span class="example">You are <u>always</u> funny. <i>(also "there is/are": There is <u>usually</u> a lot of traffic.)</i></span>
+      </div>
+      <div class="row">
+        <span class="lbl">QUESTION</span>
+        <span class="chip chip-aux">AUXILIARY</span><span class="arrow">→</span>
+        <span class="chip chip-subj">SUBJECT</span><span class="arrow">→</span>
+        <span class="chip chip-adv">ADVERB</span>
+        <span class="example">Does she <u>often</u> read? / Are you <u>always</u> funny?</span>
+      </div>
+      <div class="row">
+        <span class="lbl">MODAL</span>
+        <span class="chip chip-subj">SUBJECT</span><span class="arrow">→</span>
+        <span class="chip chip-aux">MODAL</span><span class="arrow">→</span>
+        <span class="chip chip-adv">ADVERB</span><span class="arrow">→</span>
+        <span class="chip chip-verb">VERB</span>
+        <span class="example">You <u>should always</u> wear a helmet.</span>
+      </div>
+      <div class="row">
+        <span class="lbl">MODAL Q.</span>
+        <span class="chip chip-aux">MODAL</span><span class="arrow">→</span>
+        <span class="chip chip-subj">SUBJECT</span><span class="arrow">→</span>
+        <span class="chip chip-adv">ADVERB</span><span class="arrow">→</span>
+        <span class="chip chip-verb">VERB</span>
+        <span class="example"><u>Should</u> I <u>always</u> do it? / Can you <u>usually</u> come early?</span>
+      </div>
+    </div>
+    <p class="intro">🧩 <b>Modal verbs</b> (can, could, should, must, will, might...) work like "be": the adverb goes right after the modal and before the main verb — <b>Subject + Modal + Adverb + Verb</b>. In questions, it's the same order as with "be" but the modal moves to the front — <b>Modal + Subject + Adverb + Verb</b>: "Should I always do it?" / "Can you usually come early?"</p>
+
+    <h3>⚠️ Common Mistakes</h3>
+    <div class="postits">
+      <div class="postit"><b>Position with a verb</b><span class="wrong">❌ She goes usually to work.</span><span class="right">✅ She usually goes to work.</span></div>
+      <div class="postit"><b>Position with "be"</b><span class="wrong">❌ They usually are tired.</span><span class="right">✅ They are usually tired.</span></div>
+      <div class="postit"><b>Negative sentences</b><span class="wrong">❌ We often don't go out.</span><span class="right">✅ We don't often go out.</span></div>
+      <div class="postit"><b>Never / Hardly ever</b><span class="wrong">❌ He isn't never late.</span><span class="right">✅ He is never late.</span></div>
+      <div class="postit"><b>Modal verbs</b><span class="wrong">❌ You always should wear a helmet.</span><span class="right">✅ You should always wear a helmet.</span></div>
+    </div>
+
+    <p class="freq-note">⏱️ <b>Frequency expressions</b> like <i>once a day, twice a week, three times a month, every day</i> are longer (2+ words) and go at the <b>end</b> of the sentence: "I brush my teeth <u>three times a day</u>." / "I see her <u>every day</u>."</p>
+  </div>
+
+  <div class="section-head">
+    <h2>1️⃣ Choose the correct sentence</h2>
+    <p class="instructions">Read the three sentences and choose the one with the frequency adverb in the correct position.</p>
+  </div>
+  <section id="p1" class="content"></section>
+
+  <div class="section-head">
+    <h2>2️⃣ Simple selection</h2>
+    <p class="instructions">Look at the clue (the percentage) and choose, among the 3 sentences, the one with the correct adverb and position.</p>
+  </div>
+  <section id="p2" class="content"></section>
+
+  <div class="section-head">
+    <h2>3️⃣ Write the sentence</h2>
+    <p class="instructions">Rewrite the original sentence, placing the given adverb in the correct position.</p>
+  </div>
+  <section id="p3" class="content"></section>
+
+  <div class="academy">
+    <h2>🎓 Want to learn faster?</h2>
+    <p>Get personalized 1-on-1 English classes with Your English Buddy. Start with a free diagnostic class.</p>
+    <a class="academy-btn" href="https://fabio-english-academy.vercel.app/" target="_blank" rel="noopener">Book your class →</a>
+  </div>
+
+  <footer class="site-footer">
+    <strong>Your English Buddy</strong><br>
+    Save this and see you in class! 🤓
+    <div class="tiktok-follow">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.58.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      <a href="https://www.tiktok.com/@eng_buddy" target="_blank" rel="noopener">@eng_buddy</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ---------- Glosario para tooltips ---------- */
+const GLOSS = {
+  "always":["/ólwueis/","siempre"], "usually":["/iúshuali/","normalmente"],
+  "often":["/ófen/","a menudo"], "sometimes":["/sámtaims/","a veces"],
+  "rarely":["/réarli/","raramente"], "never":["/néver/","nunca"],
+  "hardly ever":["/járdli éver/","casi nunca"], "seldom":["/séldom/","raras veces"],
+  "seatbelt":["/sítbelt/","cinturón de seguridad"], "forgets":["/forguéts/","olvida"],
+  "grandparents":["/granpérents/","abuelos"], "boils":["/bóils/","hierve"],
+  "abroad":["/abród/","al extranjero"], "helmet":["/jélmet/","casco"],
+  "traffic":["/tráfik/","tráfico"], "swimming":["/suímin/","nadar"],
+  "keys":["/kis/","llaves"], "quickly":["/kuíkli/","rápidamente"],
+  "tired":["/táiörd/","cansado/a"], "late":["/léit/","tarde (llegar tarde)"],
+  "early":["/érli/","temprano"], "vegetables":["/véyetabols/","verduras"],
+  "weekends":["/uíkends/","fines de semana"], "weekdays":["/uíkdeis/","días entre semana"],
+  "cleans":["/clins/","limpia"], "arrives":["/aráivs/","llega"],
+  "arrive":["/aráiv/","llegar"], "rises":["/ráises/","sale / asciende"],
+  "east":["/ist/","este (punto cardinal)"], "fast food":["/fast fud/","comida rápida"],
+  "homework":["/jóumuörk/","tarea"], "dinner":["/díner/","cena"],
+  "breakfast":["/brékfast/","desayuno"], "cooks":["/kuks/","cocina"]
+};
+function hl(text){
+  let out = text;
+  Object.keys(GLOSS).sort((a,b)=>b.length-a.length).forEach(w=>{
+    const [pron,es] = GLOSS[w];
+    const re = new RegExp("\\b("+w+")\\b","i");
+    out = out.replace(re, m=>`<span class="tip">${m}<span class="balloon">${pron} — ${es}</span></span>`);
+  });
+  return out;
+}
+function norm(s){
+  return s.toLowerCase().replace(/[.,!?]/g,"").replace(/\s+/g," ").trim();
+}
+function shuffle(arr){
+  const a=arr.map((v,i)=>({v,i}));
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+/* ---------- Section 1: Choose the correct sentence (3 options) ---------- */
+const sec1 = [
+[["She usually gets up early.","She gets up usually early.","She gets up early usually."],0,"\"Usually\" goes before the main verb (gets up)."],
+[["I am always tired on Mondays.","I always am tired on Mondays.","I am tired on Mondays always."],0,"\"Always\" goes after the verb \"be\" (am)."],
+[["They often visit their grandparents.","They visit often their grandparents.","They visit their grandparents often."],0,"\"Often\" goes before the main verb (visit)."],
+[["He is never late.","He never is late.","He isn't never late."],0,"\"Never\" goes after \"be\" (is), and it's used with a positive verb — never with \"isn't\"."],
+[["We sometimes eat pizza on Fridays.","We eat sometimes pizza on Fridays.","We eat pizza on Fridays sometimes."],0,"\"Sometimes\" goes before the main verb (eat)."],
+[["My sister seldom watches TV.","My sister watches seldom TV.","My sister watches TV seldom."],0,"\"Seldom\" goes before the main verb (watches), just like \"rarely\"."],
+[["Do you ever go swimming?","Do you go ever swimming?","Ever do you go swimming?"],0,"In questions, the adverb goes right after the subject (you)."],
+[["There is usually a lot of traffic.","There usually is a lot of traffic.","There is a lot of traffic usually."],0,"\"Usually\" goes after \"there is/are\", like with \"be\"."],
+[["I can usually finish my homework quickly.","I usually can finish my homework quickly.","I can finish my homework usually quickly."],0,"With modal verbs (can), the adverb goes after the modal and before the main verb."],
+[["You should always wear a seatbelt.","You always should wear a seatbelt.","You should wear a seatbelt always."],0,"With modal verbs (should), the adverb goes after the modal and before the main verb."],
+[["She hardly ever calls me.","She calls hardly ever me.","She doesn't hardly ever call me."],0,"\"Hardly ever\" goes before the main verb (calls) and is used with a positive verb, never with \"doesn't\"."],
+[["We are usually at home on Sundays.","We usually are at home on Sundays.","We are at home on Sundays usually."],0,"\"Usually\" goes after the verb \"be\" (are)."],
+[["He often forgets his keys.","He forgets often his keys.","He forgets his keys often."],0,"\"Often\" goes before the main verb (forgets)."],
+[["They never arrive on time.","They arrive never on time.","They don't never arrive on time."],0,"\"Never\" goes before the main verb (arrive) and is used with a positive verb, never with \"don't\"."],
+[["I usually walk to school.","I walk usually to school.","I walk to school usually."],0,"\"Usually\" goes before the main verb (walk)."]
+];
+
+const p1 = document.getElementById("p1");
+sec1.forEach((item,i)=>{
+  const [options,correctIdx,why] = item;
+  const shuffled = shuffle(options);
+  const correctPos = shuffled.findIndex(o=>o.i===correctIdx);
+  const div = document.createElement("div");
+  div.className="exercise";
+  let optsHtml = shuffled.map((o,pos)=>`<label class="opt"><input type="radio" name="s1-${i}" value="${pos}">${hl(o.v)}</label>`).join("");
+  div.innerHTML = `
+    <span class="num">Exercise ${i+1}</span>
+    ${optsHtml}
+    <button class="check">Check</button>
+    <div class="feedback"></div>`;
+  div.querySelector(".check").onclick=()=>{
+    const sel = div.querySelector(`input[name="s1-${i}"]:checked`);
+    const fb = div.querySelector(".feedback");
+    if(!sel){fb.textContent="Choose an option.";fb.className="feedback no";return;}
+    const ok = Number(sel.value)===correctPos;
+    fb.innerHTML = (ok? "✅ Correct!" : "❌ Incorrect. The correct sentence is: "+hl(shuffled[correctPos].v))
+      + `<div class="why">💡 ${hl(why)}</div>`;
+    fb.className = "feedback "+(ok?"ok":"no");
+  };
+  p1.appendChild(div);
+});
+
+/* ---------- Section 2: Simple selection (clue + 3 sentences to choose from) ---------- */
+const sec2 = [
+["100%",["I usually brush my teeth before bed.","I always brush my teeth before bed.","I brush always my teeth before bed."],1,"100% = always; it goes before the main verb (brush)."],
+["0%",["He rarely eats vegetables.","He never eats vegetables.","He doesn't never eat vegetables."],1,"0% = never; it already has a negative meaning, so it's used with a positive verb, not \"doesn't\"."],
+["90%",["She usually arrives early.","She sometimes arrives early.","She arrives usually early."],0,"90% is very high but not 100%, so we use \"usually\", before the main verb (arrives)."],
+["70%",["We sometimes go to the park on weekends.","We often go to the park on weekends.","We go often to the park on weekends."],1,"70% = often; it goes before the main verb (go)."],
+["50%",["They sometimes watch movies at night.","They often watch movies at night.","They watch sometimes movies at night."],0,"50% = sometimes (half the time); it goes before the main verb (watch)."],
+["10%",["My brother rarely cleans his room.","My brother never cleans his room.","My brother cleans rarely his room."],0,"10% is very low but not 0%, so we use \"rarely\", before the main verb (cleans)."],
+["100%",["The sun always rises in the east.","The sun usually rises in the east.","The sun rises always in the east."],0,"100% = always (it's a fact that never changes); it goes before the main verb (rises)."],
+["20%",["I rarely eat fast food.","I often eat fast food.","I eat rarely fast food."],0,"20% is low frequency, so we use \"rarely\", before the main verb (eat)."],
+["60%",["Our teacher sometimes gives us homework.","Our teacher often gives us homework.","Our teacher gives often us homework."],1,"60% = often; it goes before the main verb (gives)."],
+["0%",["She rarely drinks coffee.","She never drinks coffee.","She doesn't never drink coffee."],1,"0% = never; it's used with a positive verb, not \"doesn't\"."],
+["80%",["He usually takes the bus to work.","He often takes the bus to work.","He takes usually the bus to work."],0,"80% is high but not 100%, so we use \"usually\", before the main verb (takes)."],
+["40%",["We sometimes play video games on weekdays.","We rarely play video games on weekdays.","We play sometimes video games on weekdays."],0,"40% is less than half, so we use \"sometimes\", before the main verb (play)."],
+["100%",["Water always boils at 100°C.","Water usually boils at 100°C.","Water boils always at 100°C."],0,"100% = always (it's a scientific fact); it goes before the main verb (boils)."],
+["5%",["My grandma often uses a computer.","My grandma hardly ever uses a computer.","My grandma doesn't hardly ever use a computer."],1,"5% is almost never, so we use \"hardly ever\" with a positive verb, not \"doesn't\"."],
+["95%",["I usually do my homework before dinner.","I sometimes do my homework before dinner.","I do usually my homework before dinner."],0,"95% is very high but not 100%, so we use \"usually\", before the main verb (do)."]
+];
+
+const p2 = document.getElementById("p2");
+sec2.forEach((item,i)=>{
+  const [clue,options,correctIdx,why]=item;
+  const shuffled = shuffle(options); // [{v,i}]
+  const correctPos = shuffled.findIndex(o=>o.i===correctIdx);
+  const div=document.createElement("div");
+  div.className="exercise";
+  let optsHtml = shuffled.map((o,pos)=>`<label class="opt"><input type="radio" name="s2-${i}" value="${pos}">${hl(o.v)}</label>`).join("");
+  div.innerHTML=`
+    <span class="num">Exercise ${i+1}</span> <span class="clue">${clue}</span>
+    ${optsHtml}
+    <button class="check">Check</button>
+    <div class="feedback"></div>`;
+  div.querySelector(".check").onclick=()=>{
+    const sel=div.querySelector(`input[name="s2-${i}"]:checked`);
+    const fb=div.querySelector(".feedback");
+    if(!sel){fb.textContent="Choose an option.";fb.className="feedback no";return;}
+    const ok = Number(sel.value)===correctPos;
+    fb.innerHTML = (ok? "✅ Correct!" : "❌ Incorrect. The correct sentence is: "+hl(shuffled[correctPos].v))
+      + `<div class="why">💡 ${hl(why)}</div>`;
+    fb.className="feedback "+(ok?"ok":"no");
+  };
+  p2.appendChild(div);
+});
+
+/* ---------- Section 3: Write the sentence with the adverb ---------- */
+const sec3 = [
+["I eat breakfast.","always",["i always eat breakfast"],"\"Always\" goes before the main verb (eat)."],
+["She is late.","never",["she is never late"],"\"Never\" goes after the verb \"be\" (is)."],
+["They go to the gym.","usually",["they usually go to the gym"],"\"Usually\" goes before the main verb (go)."],
+["We watch TV after dinner.","often",["we often watch tv after dinner"],"\"Often\" goes before the main verb (watch)."],
+["He drinks tea.","sometimes",["he sometimes drinks tea"],"\"Sometimes\" goes before the main verb (drinks)."],
+["My parents travel abroad.","rarely",["my parents rarely travel abroad"],"\"Rarely\" goes before the main verb (travel)."],
+["I am tired on Mondays.","usually",["i am usually tired on mondays"],"\"Usually\" goes after the verb \"be\" (am)."],
+["You should wear a helmet.","always",["you should always wear a helmet"],"With modal verbs (should), the adverb goes after the modal and before the main verb (wear)."],
+["She calls her mom.","hardly ever",["she hardly ever calls her mom"],"\"Hardly ever\" goes before the main verb (calls) and is used with a positive verb."],
+["We are at home in the evening.","usually",["we are usually at home in the evening"],"\"Usually\" goes after the verb \"be\" (are)."],
+["He forgets his homework.","often",["he often forgets his homework"],"\"Often\" goes before the main verb (forgets)."],
+["They arrive late.","never",["they never arrive late"],"\"Never\" goes before the main verb (arrive)."],
+["I can finish my work early.","usually",["i can usually finish my work early"],"With modal verbs (can), the adverb goes after the modal and before the main verb (finish)."],
+["There is a party on Fridays.","sometimes",["there is sometimes a party on fridays"],"\"Sometimes\" goes after \"there is\", like with \"be\"."],
+["My dad cooks dinner.","always",["my dad always cooks dinner"],"\"Always\" goes before the main verb (cooks)."]
+];
+
+const p3 = document.getElementById("p3");
+sec3.forEach((item,i)=>{
+  const [sentence,adverb,accepted,why]=item;
+  const div=document.createElement("div");
+  div.className="exercise";
+  div.innerHTML=`
+    <span class="num">Exercise ${i+1}</span>
+    <p>${hl(sentence)} <em>(${hl(adverb)})</em></p>
+    <input type="text" placeholder="Write the full sentence here...">
+    <button class="check">Check</button>
+    <div class="feedback"></div>`;
+  div.querySelector(".check").onclick=()=>{
+    const val = div.querySelector("input").value;
+    const fb = div.querySelector(".feedback");
+    if(!val.trim()){fb.textContent="Write an answer.";fb.className="feedback no";return;}
+    const ok = accepted.includes(norm(val));
+    fb.innerHTML = (ok? "✅ Correct!" : "❌ Not quite. Expected answer: "+hl(accepted[0].charAt(0).toUpperCase()+accepted[0].slice(1)+"."))
+      + `<div class="why">💡 ${hl(why)}</div>`;
+    fb.className="feedback "+(ok?"ok":"no");
+  };
+  p3.appendChild(div);
+});
+</script>
+</body>
+</html>
