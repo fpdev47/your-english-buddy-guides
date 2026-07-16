@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Object Pronouns — Your English Buddy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+
+  :root{
+    --paper:#fdf9ec; --line:#bcd6ea; --margin:#e79ba0; --ink:#2b3a55;
+    --accent:#185C60; --accent2:#2E8A82; --accent-soft:#e4f0ee;
+    --good:#3f9142; --bad:#c0392b; --sticky:#fff6c9; --lime:#a8d76c;
+  }
+
+  body {
+    font-family:'Shantell Sans', sans-serif;
+    background:#dfe9f3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23c9d8e8'/%3E%3C/svg%3E");
+    color: var(--ink);
+    font-size: clamp(15px, 3.4vw, 18px);
+    line-height: 1.6;
+    padding: 24px 8px 60px;
+  }
+
+  .notebook{
+    max-width: 900px; margin: 0 auto; background: var(--paper); border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2); position: relative; overflow: hidden;
+    background-image:
+      linear-gradient(90deg, transparent 0 55px, var(--margin) 55px 57px, transparent 57px),
+      repeating-linear-gradient(var(--paper) 0 34px, var(--line) 34px 35px);
+    background-position: 0 90px;
+  }
+  .spirals{ display:flex; gap:12px; padding:12px 20px 0; }
+  .spirals span{ width:13px; height:13px; border-radius:50%; background:var(--accent); opacity:.5; box-shadow: inset 0 2px 3px rgba(0,0,0,.35); }
+
+  /* ── Header ── */
+  .site-header {
+    padding: clamp(10px, 3vw, 16px) clamp(16px, 4vw, 24px) clamp(10px, 3vw, 14px) 70px;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 16px);
+    margin: 0 0 clamp(10px, 3vw, 14px);
+  }
+
+  .logo-badge {
+    width: clamp(42px, 11vw, 58px);
+    height: clamp(42px, 11vw, 58px);
+    border-radius: 50%;
+    background: var(--sticky);
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(14px, 3.5vw, 19px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 3px solid #fff;
+    box-shadow: 2px 3px 7px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  .logo-badge img { width: 100%; height: 100%; object-fit: cover; }
+
+  .header-text { flex: 1; min-width: 0; }
+
+  .header-academy {
+    font-size: clamp(9px, 2.2vw, 11px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent2);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-title {
+    font-size: clamp(16px, 4.6vw, 23px);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.25;
+  }
+
+  .header-subtitle {
+    font-size: clamp(10.5px, 2.8vw, 13px);
+    color: #5a6b7a;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .score-badge {
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    padding: clamp(5px, 1.6vw, 8px) clamp(8px, 2.6vw, 14px);
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .score-badge .num {
+    font-size: clamp(15px, 3.8vw, 19px);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .score-badge .lbl {
+    font-size: clamp(8px, 2vw, 10px);
+    color: #789;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+
+  /* ── Tab bar ── */
+  .tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(6px, 1.8vw, 9px);
+  }
+
+  .tab-btn {
+    padding: clamp(6px, 1.8vw, 9px) clamp(10px, 2.8vw, 14px);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    background: #fff;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: clamp(11.5px, 3vw, 13.5px);
+    font-weight: 700;
+    font-family: 'Shantell Sans', sans-serif;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .tab-btn .badge {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 0.85em;
+    font-weight: 700;
+    opacity: 0.85;
+  }
+  .tab-btn:hover { background: var(--accent-soft); }
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .tab-btn.complete { color: var(--good); border-color: var(--good); }
+  .tab-btn.active.complete { color: #fff; background: var(--good); border-color: var(--good); }
+
+  /* ── Content ── */
+  .wrap { max-width: 100%; margin: 0 auto; padding: 0 clamp(16px, 4vw, 24px) clamp(12px, 4vw, 18px) 70px; }
+  .tab-content { display: block; padding: 8px 0 6px; scroll-margin-top: 20px; }
+
+  .section-intro{ margin: 4px 0 14px; }
+  .section-intro h2{
+    color: var(--accent); font-size: clamp(17px, 4vw, 20px); margin: 0 0 8px;
+    border-bottom: 2px solid var(--accent2); display: inline-block; padding-bottom: 2px;
+  }
+  .formula{
+    background:#fff; border:2px dashed var(--accent2); border-radius:8px;
+    padding: 8px 14px; margin-bottom: 8px; font-size: clamp(13px, 3.2vw, 14.5px); line-height:1.5;
+  }
+  .formula strong{ color: var(--accent); }
+  .instructions{
+    background: var(--accent-soft); border-left: 4px solid var(--accent);
+    padding: 8px 14px; border-radius: 0 8px 8px 0; font-size: clamp(13px, 3.2vw, 14.5px);
+  }
+
+  /* ── Exercise card ── */
+  .exercise {
+    background: var(--sticky);
+    border-radius: 10px;
+    border: 1px solid #e6d98a;
+    border-left: 5px solid var(--accent2);
+    margin-bottom: 16px;
+    padding: clamp(14px, 3.6vw, 18px) clamp(14px, 4vw, 20px) clamp(12px, 3vw, 16px);
+    box-shadow: 2px 3px 7px rgba(0,0,0,0.12);
+    transition: border-color 0.2s;
+    max-width: 100%;
+  }
+  .exercise.answered.correct-ex { border-left-color: var(--good); }
+  .exercise.answered.incorrect-ex { border-left-color: var(--bad); }
+
+  .exercise-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(22px, 5.5vw, 26px);
+    height: clamp(22px, 5.5vw, 26px);
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(11px, 2.8vw, 13px);
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .exercise-sentence {
+    display: flex;
+    align-items: flex-start;
+    font-size: clamp(15.5px, 4vw, 19px);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.55;
+    word-break: break-word;
+  }
+  .exercise-sentence .blank {
+    display: inline-block;
+    min-width: clamp(32px, 8vw, 46px);
+    border-bottom: 2.5px dotted var(--accent);
+    text-align: center;
+  }
+
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(7px, 2vw, 9px);
+  }
+
+  .opt-btn {
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: clamp(14px, 3.6vw, 16.5px);
+    font-weight: 700;
+    background: #fff;
+    border: 2px solid var(--accent2);
+    border-radius: 9px;
+    padding: clamp(7px, 2vw, 9px) clamp(12px, 3.4vw, 16px);
+    cursor: pointer;
+    color: var(--ink);
+    transition: all 0.15s;
+  }
+  .opt-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+  .options.locked .opt-btn { cursor: default; }
+  .options.locked .opt-btn:hover { border-color: var(--accent2); background: #fff; }
+
+  .opt-btn.selected-correct {
+    background: #e4f5e6;
+    border-color: var(--good);
+    color: #2c6b3a;
+  }
+  .opt-btn.selected-wrong {
+    background: #fbe6e2;
+    border-color: var(--bad);
+    color: #a43e30;
+  }
+  .opt-btn.reveal-correct {
+    background: #e4f5e6;
+    border-color: var(--good);
+    color: #2c6b3a;
+  }
+  .options.locked .opt-btn:not(.selected-correct):not(.selected-wrong):not(.reveal-correct) {
+    opacity: 0.5;
+  }
+
+  .explain {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.25s ease, opacity 0.25s ease, margin 0.25s ease;
+    font-size: clamp(13.5px, 3.4vw, 15.5px);
+    color: var(--ink);
+    background: #fff;
+    border: 1px dashed var(--accent2);
+    border-radius: 8px;
+    word-break: break-word;
+  }
+  .explain.show {
+    max-height: 240px;
+    opacity: 1;
+    margin-top: 12px;
+    padding: clamp(9px, 2.6vw, 11px) clamp(11px, 3vw, 14px);
+  }
+  .explain strong { color: var(--accent); }
+  .explain .icon { margin-right: 4px; }
+
+  /* ── Reset bar ── */
+  .reset-bar {
+    text-align: center;
+    padding: clamp(16px, 5vw, 24px) clamp(16px, 4vw, 24px) 4px 70px;
+  }
+  .reset-btn {
+    font-family: 'Shantell Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 3.2vw, 14.5px);
+    background: #fff;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 24px;
+    padding: clamp(9px, 2.6vw, 11px) clamp(18px, 5vw, 26px);
+    cursor: pointer;
+    width: 100%;
+    max-width: 360px;
+  }
+  .reset-btn:hover { background: var(--accent); color: #fff; }
+
+  /* ── Footer ── */
+  .site-footer {
+    background: var(--accent);
+    color: #dcebe9;
+    text-align: center;
+    padding: clamp(16px, 4vw, 22px) 18px;
+    font-size: clamp(12.5px, 3vw, 14px);
+    margin-top: clamp(20px, 5vw, 28px);
+  }
+  .site-footer strong { color: var(--lime); }
+  .tiktok-follow {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    margin-top: 10px;
+  }
+  .tiktok-follow svg { fill: var(--lime); flex-shrink: 0; }
+  .tiktok-follow a {
+    color: var(--lime); font-weight: 700; text-decoration: none; font-size: clamp(12.5px, 3vw, 14px);
+  }
+  .tiktok-follow a:hover { text-decoration: underline; }
+  .academy{
+    margin: 20px clamp(16px,4vw,24px) 4px 70px; background:#fff; border:2px dashed var(--accent2); border-radius:10px;
+    padding:18px 20px; text-align:center;
+  }
+  .academy h2{color:var(--accent); font-size:1.25rem; margin:0 0 6px;}
+  .academy p{margin:0 0 14px; font-size:.96rem; line-height:1.5;}
+  .academy-btn{
+    display:inline-block; background:var(--accent); color:#fff; font-weight:700; text-decoration:none;
+    padding:9px 20px; border-radius:24px; font-size:.92rem; border:2px solid var(--accent);
+  }
+  .academy-btn:hover{background:#fff; color:var(--accent);}
+
+  /* ── Breakpoints ── */
+  @media (max-width: 600px) {
+    .header-top { gap: 10px; }
+    .exercise { border-radius: 9px; }
+  }
+
+  @media (max-width: 480px) {
+    .notebook{
+      background-image:
+        linear-gradient(90deg, transparent 0 22px, var(--margin) 22px 24px, transparent 24px),
+        repeating-linear-gradient(var(--paper) 0 34px, var(--line) 34px 35px);
+    }
+    .site-header { padding-left: 34px; padding-right: 14px; }
+    .wrap { padding-left: 34px; padding-right: 14px; }
+    .reset-bar { padding-left: 34px; padding-right: 14px; }
+    .header-academy { display: none; }
+    .logo-badge { width: 40px; height: 40px; font-size: 13px; }
+    .exercise-num { margin-right: 6px; }
+    .options { gap: 6px; }
+    .exercise { padding: 12px 12px 10px; }
+    .section-intro h2 { font-size: 16px; }
+    .academy{margin:16px 14px 4px 34px; padding:14px 14px;}
+  }
+
+  @media (max-width: 340px) {
+    .score-badge .lbl { display: none; }
+    .spirals span { width: 10px; height: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="notebook">
+  <div class="spirals">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <header class="site-header">
+    <div class="header-top">
+      <div class="logo-badge"><img src="data:image/png;base64,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" alt="Your English Buddy"></div>
+      <div class="header-text">
+        <div class="header-academy">Your English Buddy</div>
+        <div class="header-title">🔁 Object Pronouns</div>
+        <div class="header-subtitle">Pronombres de objeto en inglés — Clase en vivo de TikTok</div>
+      </div>
+      <div class="score-badge">
+        <div class="num" id="global-score">0/40</div>
+        <div class="lbl">Puntaje</div>
+      </div>
+    </div>
+    <nav class="tab-bar" id="tab-bar"></nav>
+  </header>
+
+  <div class="wrap">
+    <div id="tab-content-container"></div>
+
+    <div class="reset-bar">
+      <button class="reset-btn" id="reset-btn">🔄 Reiniciar todos los ejercicios</button>
+    </div>
+  </div>
+
+  <div class="academy">
+    <h2>🎓 ¿Quieres ir más rápido?</h2>
+    <p>Aprende inglés con clases personalizadas 1‑a‑1, pensadas para tu nivel y tus objetivos. Empieza con una clase diagnóstica gratis.</p>
+    <a class="academy-btn" href="https://fabio-english-academy.vercel.app/" target="_blank" rel="noopener">Conoce Your English Buddy Academy →</a>
+  </div>
+
+  <footer class="site-footer">
+    <strong>Your English Buddy</strong><br>
+    Save this and see you in class! 🤓
+    <div class="tiktok-follow">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.58.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      <a href="https://www.tiktok.com/@eng_buddy" target="_blank" rel="noopener">@eng_buddy</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+const SECTIONS = [
+  {
+    key: 'people',
+    icon: '🙋',
+    title: 'Personas',
+    formula: 'Sujeto: <strong>I, you, he, she, we, they</strong> → Objeto: <strong>me, you, him, her, us, them</strong> — se usan cuando la persona recibe la acción del verbo.',
+    instructions: 'Elige el pronombre de objeto correcto según a quién se refiere la oración.',
+    exercises: [
+      { s:"I love my sister. I call ___ every day.", o:["she","her","hers","herself"], c:1, e:"\"Her\" reemplaza a \"my sister\" como objeto directo (femenino, singular)." },
+      { s:"I'm stuck with this problem. Can you help ___?", o:["I","me","my","mine"], c:1, e:"Después del verbo \"help\" usamos el pronombre de objeto <strong>me</strong>, no el sujeto \"I\"." },
+      { s:"They invited us to the party, so we thanked ___.", o:["they","them","their","theirs"], c:1, e:"\"Them\" reemplaza a \"they\" cuando es el objeto del verbo \"thank\"." },
+      { s:"She doesn't know Peter. Have you met ___?", o:["he","him","his","himself"], c:1, e:"\"Him\" es el pronombre de objeto para \"Peter\" (masculino, singular)." },
+      { s:"We are going to the movies. Do you want to join ___?", o:["we","us","our","ours"], c:1, e:"Después de \"join\" usamos el objeto <strong>us</strong>." },
+      { s:"My parents are strict, but I respect ___ a lot.", o:["they","them","their","theirs"], c:1, e:"\"Them\" reemplaza a \"my parents\" como objeto del verbo \"respect\"." },
+      { s:"Is that your brother? I don't remember ___.", o:["he","him","his","himself"], c:1, e:"\"Him\" es el objeto correcto para referirse a \"your brother\"." },
+      { s:"Sarah is very kind, so everyone likes ___.", o:["she","her","hers","herself"], c:1, e:"\"Her\" reemplaza a \"Sarah\" como objeto del verbo \"like\"." },
+      { s:"The students worked hard, so the teacher congratulated ___.", o:["they","them","their","theirs"], c:1, e:"\"Them\" es el objeto correcto para \"the students\" (plural)." },
+      { s:"I saw John yesterday and gave ___ my phone number.", o:["he","him","his","himself"], c:1, e:"\"Him\" reemplaza a \"John\" como objeto del verbo \"give\"." }
+    ]
+  },
+  {
+    key: 'things',
+    icon: '📦',
+    title: 'Cosas y Animales',
+    formula: 'Usamos <strong>it</strong> para un objeto o animal (singular) y <strong>them</strong> para varios objetos, animales o personas (plural).',
+    instructions: 'Elige el pronombre de objeto correcto: it o them.',
+    exercises: [
+      { s:"I bought a new laptop, and I use ___ every day.", o:["it","its","it's","itself"], c:0, e:"\"It\" reemplaza a \"a new laptop\" (objeto singular)." },
+      { s:"Where are my keys? I can't find ___.", o:["they","them","their","it"], c:1, e:"\"Keys\" es plural, así que usamos <strong>them</strong>." },
+      { s:"The movie was great. Did you like ___?", o:["it","its","it's","they"], c:0, e:"\"It\" reemplaza a \"the movie\" (singular)." },
+      { s:"My dog loves to play, so I walk ___ every morning.", o:["it","its","it's","them"], c:0, e:"Cuando no se especifica el género del animal, normalmente se usa <strong>it</strong>." },
+      { s:"These shoes are new. I bought ___ yesterday.", o:["it","its","they","them"], c:3, e:"\"Shoes\" es plural, así que usamos <strong>them</strong>." },
+      { s:"The cake looks delicious. Who made ___?", o:["it","its","it's","they"], c:0, e:"\"It\" reemplaza a \"the cake\" (singular)." },
+      { s:"I have two cats, and I feed ___ twice a day.", o:["it","its","they","them"], c:3, e:"\"Two cats\" es plural, así que usamos <strong>them</strong>." },
+      { s:"This book is interesting. I'm reading ___ now.", o:["it","its","it's","itself"], c:0, e:"\"It\" reemplaza a \"this book\" (singular)." },
+      { s:"The children are playing outside. Can you watch ___?", o:["it","its","they","them"], c:3, e:"\"Children\" es plural, así que usamos <strong>them</strong>." },
+      { s:"My phone is broken, so I need to fix ___.", o:["it","its","it's","itself"], c:0, e:"\"It\" reemplaza a \"my phone\" (singular)." }
+    ]
+  },
+  {
+    key: 'verbs',
+    icon: '💬',
+    title: 'Verbo + Objeto',
+    formula: 'Después de un verbo (<strong>give, tell, ask, call, send, remind...</strong>) usamos el pronombre de <strong>objeto</strong>, nunca el de sujeto.',
+    instructions: 'Elige el pronombre de objeto correcto para completar cada oración.',
+    exercises: [
+      { s:"Please give ___ the report. (a mí)", o:["I","me","my","mine"], c:1, e:"Después de \"give\" usamos el objeto <strong>me</strong>." },
+      { s:"Can you send ___ the email? (a nosotros)", o:["we","us","our","ours"], c:1, e:"Después de \"send\" usamos el objeto <strong>us</strong>." },
+      { s:"I told ___ the truth. (a ella)", o:["she","her","hers","herself"], c:1, e:"Después de \"tell\" usamos el objeto <strong>her</strong>." },
+      { s:"She showed ___ her new car. (a ellos)", o:["they","them","their","theirs"], c:1, e:"Después de \"show\" usamos el objeto <strong>them</strong>." },
+      { s:"We asked ___ a question. (a él)", o:["he","him","his","himself"], c:1, e:"Después de \"ask\" usamos el objeto <strong>him</strong>." },
+      { s:"Could you pass ___ the salt? (a mí)", o:["I","me","my","mine"], c:1, e:"Después de \"pass\" usamos el objeto <strong>me</strong>." },
+      { s:"The manager promoted ___ last month. (a ella)", o:["she","her","hers","herself"], c:1, e:"\"Her\" es el objeto directo del verbo \"promote\"." },
+      { s:"I'll call ___ tomorrow. (a ellos)", o:["they","them","their","theirs"], c:1, e:"Después de \"call\" usamos el objeto <strong>them</strong>." },
+      { s:"He wrote ___ a letter. (a mí)", o:["I","me","my","mine"], c:1, e:"Después de \"write\" usamos el objeto <strong>me</strong>." },
+      { s:"Please remind ___ about the meeting. (a nosotros)", o:["we","us","our","ours"], c:1, e:"Después de \"remind\" usamos el objeto <strong>us</strong>." }
+    ]
+  },
+  {
+    key: 'prepositions',
+    icon: '🔗',
+    title: 'Después de Preposiciones',
+    formula: 'Después de preposiciones (<strong>for, with, to, about, from, between...</strong>) siempre usamos el pronombre de <strong>objeto</strong>.',
+    instructions: 'Elige el pronombre de objeto correcto para completar cada oración.',
+    exercises: [
+      { s:"This gift is for ___. (yo)", o:["I","me","my","mine"], c:1, e:"Después de \"for\" usamos el objeto <strong>me</strong>." },
+      { s:"She sat next to ___ during the flight. (él)", o:["he","him","his","himself"], c:1, e:"Después de \"next to\" usamos el objeto <strong>him</strong>." },
+      { s:"We talked about ___ for hours. (ella)", o:["she","her","hers","herself"], c:1, e:"Después de \"about\" usamos el objeto <strong>her</strong>." },
+      { s:"Come with ___ to the concert! (nosotros)", o:["we","us","our","ours"], c:1, e:"Después de \"with\" usamos el objeto <strong>us</strong>." },
+      { s:"This is a secret between you and ___. (yo)", o:["I","me","my","mine"], c:1, e:"Después de una preposición como \"between\" usamos el objeto <strong>me</strong>." },
+      { s:"He walked past ___ without saying hello. (ellos)", o:["they","them","their","theirs"], c:1, e:"Después de \"past\" usamos el objeto <strong>them</strong>." },
+      { s:"I'm a little worried about ___. (ella)", o:["she","her","hers","herself"], c:1, e:"Después de \"about\" usamos el objeto <strong>her</strong>." },
+      { s:"There's a letter from ___ on the table. (él)", o:["he","him","his","himself"], c:1, e:"Después de \"from\" usamos el objeto <strong>him</strong>." },
+      { s:"She stood in front of ___ in the line. (nosotros)", o:["we","us","our","ours"], c:1, e:"Después de \"in front of\" usamos el objeto <strong>us</strong>." },
+      { s:"The dog ran towards ___ excitedly. (ellos)", o:["they","them","their","theirs"], c:1, e:"Después de \"towards\" usamos el objeto <strong>them</strong>." }
+    ]
+  }
+];
+const TOTAL_EXERCISES = SECTIONS.reduce((a, s) => a + s.exercises.length, 0);
+
+const state = {};
+SECTIONS.forEach(sec => { state[sec.key] = new Array(sec.exercises.length).fill(null); });
+
+function totalCorrect() {
+  let c = 0;
+  SECTIONS.forEach(sec => state[sec.key].forEach(v => { if (v === true) c++; }));
+  return c;
+}
+function totalAnswered() {
+  let c = 0;
+  SECTIONS.forEach(sec => state[sec.key].forEach(v => { if (v !== null) c++; }));
+  return c;
+}
+function sectionCorrect(key) {
+  return state[key].filter(v => v === true).length;
+}
+function sectionAnswered(key) {
+  return state[key].filter(v => v !== null).length;
+}
+
+function updateGlobalScore() {
+  document.getElementById('global-score').textContent = totalCorrect() + '/' + TOTAL_EXERCISES;
+}
+
+function updateTab(key) {
+  const tabBtn = document.querySelector('.tab-btn[data-key="' + key + '"]');
+  const sec = SECTIONS.find(s => s.key === key);
+  const answered = sectionAnswered(key);
+  const correct = sectionCorrect(key);
+  tabBtn.querySelector('.badge').textContent = correct + '/' + sec.exercises.length;
+  tabBtn.classList.toggle('complete', answered === sec.exercises.length);
+}
+
+function selectOption(secKey, exIdx, optIdx) {
+  if (state[secKey][exIdx] !== null) return; // locked
+  const sec = SECTIONS.find(s => s.key === secKey);
+  const ex = sec.exercises[exIdx];
+  const isCorrect = optIdx === ex.c;
+  state[secKey][exIdx] = isCorrect;
+
+  const exerciseEl = document.getElementById('ex-' + secKey + '-' + exIdx);
+  const optionsEl = exerciseEl.querySelector('.options');
+  optionsEl.classList.add('locked');
+
+  const btns = optionsEl.querySelectorAll('.opt-btn');
+  btns.forEach((btn, i) => {
+    if (i === optIdx && isCorrect) btn.classList.add('selected-correct');
+    else if (i === optIdx && !isCorrect) btn.classList.add('selected-wrong');
+    else if (i === ex.c) btn.classList.add('reveal-correct');
+  });
+
+  exerciseEl.classList.add('answered');
+  exerciseEl.classList.add(isCorrect ? 'correct-ex' : 'incorrect-ex');
+
+  const explainEl = exerciseEl.querySelector('.explain');
+  explainEl.innerHTML = (isCorrect ? '<span class="icon">✅</span><strong>¡Correcto!</strong> ' : '<span class="icon">❌</span><strong>Casi.</strong> ') + ex.e;
+  explainEl.classList.add('show');
+
+  updateGlobalScore();
+  updateTab(secKey);
+}
+
+function renderSection(sec, secIndex) {
+  const startNum = secIndex * 10 + 1;
+  const exercisesHtml = sec.exercises.map((ex, i) => {
+    const parts = ex.s.split('___');
+    const sentenceHtml = parts[0] + '<span class="blank"></span>' + (parts[1] || '');
+    const optsHtml = ex.o.map((opt, oi) =>
+      '<button class="opt-btn" onclick="selectOption(\'' + sec.key + '\',' + i + ',' + oi + ')">' + opt + '</button>'
+    ).join('');
+    return (
+      '<div class="exercise" id="ex-' + sec.key + '-' + i + '">' +
+        '<div class="exercise-sentence"><span class="exercise-num">' + (startNum + i) + '</span><span>' + sentenceHtml + '</span></div>' +
+        '<div class="options">' + optsHtml + '</div>' +
+        '<div class="explain"></div>' +
+      '</div>'
+    );
+  }).join('');
+
+  const introHtml =
+    '<div class="section-intro">' +
+      '<h2>' + sec.icon + ' ' + sec.title + '</h2>' +
+      '<p class="formula">📐 ' + sec.formula + '</p>' +
+      '<p class="instructions">' + sec.instructions + '</p>' +
+    '</div>';
+
+  return (
+    '<div class="tab-content" id="content-' + sec.key + '">' +
+      introHtml +
+      exercisesHtml +
+    '</div>'
+  );
+}
+
+function jumpTo(key) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+  document.getElementById('content-' + key).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function init() {
+  const tabBar = document.getElementById('tab-bar');
+  const container = document.getElementById('tab-content-container');
+
+  SECTIONS.forEach((sec, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.dataset.key = sec.key;
+    btn.innerHTML = sec.icon + ' ' + sec.title + '<span class="badge">0/' + sec.exercises.length + '</span>';
+    btn.onclick = () => jumpTo(sec.key);
+    tabBar.appendChild(btn);
+
+    container.insertAdjacentHTML('beforeend', renderSection(sec, i));
+  });
+
+  // Highlight the nav button for the section currently in view while scrolling
+  // (wrapped defensively so unsupported environments never break exercise clicks)
+  try {
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const key = entry.target.id.replace('content-', '');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+          }
+        });
+      }, { rootMargin: '-40% 0px -50% 0px' });
+      document.querySelectorAll('.tab-content').forEach(el => observer.observe(el));
+    }
+  } catch (err) { /* navigation highlight is a non-essential enhancement */ }
+}
+
+function resetAll() {
+  SECTIONS.forEach(sec => { state[sec.key] = new Array(sec.exercises.length).fill(null); });
+  document.getElementById('tab-content-container').innerHTML = '';
+  SECTIONS.forEach((sec, i) => document.getElementById('tab-content-container').insertAdjacentHTML('beforeend', renderSection(sec, i)));
+  document.querySelectorAll('.tab-btn').forEach(b => { const sec = SECTIONS.find(s => s.key === b.dataset.key); b.querySelector('.badge').textContent = '0/' + sec.exercises.length; b.classList.remove('complete'); });
+  updateGlobalScore();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('reset-btn').addEventListener('click', resetAll);
+
+init();
+</script>
+
+</body>
+</html>
