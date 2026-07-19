@@ -176,6 +176,46 @@
     padding: 8px 14px; border-radius: 0 8px 8px 0; font-size: clamp(13px, 3.2vw, 14.5px);
   }
 
+  /* ── Intro theory ── */
+  .theory{
+    margin: 4px clamp(16px,4vw,24px) 18px 70px;
+    background:#fff; border:2px dashed var(--accent2); border-radius:10px;
+    padding: 16px 20px 20px;
+  }
+  .theory h2{ color: var(--accent); margin: 0 0 8px; font-size: clamp(18px, 4.2vw, 21px); }
+  .theory h3{ color: var(--accent); margin: 18px 0 8px; font-size: clamp(15px, 3.6vw, 17px); }
+  .theory > p{ font-size: clamp(13.5px, 3.4vw, 15px); line-height: 1.6; }
+  .dn-rules{ display:flex; flex-direction:column; gap:10px; margin: 8px 0 4px; }
+  .dn-rule{
+    display:flex; align-items:flex-start; gap:10px;
+    background: var(--accent-soft); border-radius:8px; padding:10px 12px;
+    font-size: clamp(13px, 3.2vw, 14.5px); line-height:1.55;
+  }
+  .dn-num{
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    width: 24px; height:24px; border-radius:50%; background: var(--accent);
+    color:#fff; font-weight:700; font-size: 13px;
+  }
+  .dn-ex{ display:block; margin-top:4px; color: var(--accent2); font-weight:700; }
+  .postits{ display:flex; flex-wrap:wrap; gap:16px; margin: 12px 4px 6px; }
+  .postit{
+    width: 205px; padding: 14px 12px 10px; border-radius: 3px;
+    box-shadow: 3px 5px 9px rgba(0,0,0,.2); font-size: .85rem; position: relative;
+  }
+  .postit:nth-child(1){background:#ffd9d9; transform:rotate(-3deg);}
+  .postit:nth-child(2){background:#fff2ad; transform:rotate(2deg);}
+  .postit:nth-child(3){background:#cfe8ff; transform:rotate(-2deg);}
+  .postit:nth-child(4){background:#d7f3d2; transform:rotate(3deg);}
+  .postit:nth-child(5){background:#e3d9ff; transform:rotate(-1deg);}
+  .postit::before{content:"📌"; position:absolute; top:-12px; left:50%; transform:translateX(-50%); font-size:1.05rem;}
+  .postit b{ display:block; margin-bottom:5px; color: var(--ink); }
+  .postit .wrong{ color: var(--bad); text-decoration: line-through; display:block; }
+  .postit .right{ color: var(--good); display:block; font-weight:700; margin-top:2px; }
+  .dn-note{
+    background: var(--sticky); border:1px dashed #cbb955; border-radius:8px;
+    padding:10px 14px; margin-top:14px; font-size: clamp(13px, 3.2vw, 14.5px);
+  }
+
   /* ── Exercise card ── */
   .exercise {
     background: var(--sticky);
@@ -326,6 +366,17 @@
     color: var(--lime); font-weight: 700; text-decoration: none; font-size: clamp(12.5px, 3vw, 14px);
   }
   .tiktok-follow a:hover { text-decoration: underline; }
+  .back-home{
+    text-align:center;
+    margin: 18px clamp(16px,4vw,24px) 0 70px;
+  }
+  .back-home a{
+    color: var(--accent2);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: clamp(13px, 3.2vw, 14.5px);
+  }
+  .back-home a:hover{ text-decoration: underline; }
   .academy{
     margin: 20px clamp(16px,4vw,24px) 4px 70px; background:#fff; border:2px dashed var(--accent2); border-radius:10px;
     padding:18px 20px; text-align:center;
@@ -360,6 +411,9 @@
     .exercise { padding: 12px 12px 10px; }
     .section-intro h2 { font-size: 16px; }
     .academy{margin:16px 14px 4px 34px; padding:14px 14px;}
+    .back-home{margin:14px 14px 0 34px;}
+    .theory{margin:4px 14px 14px 34px; padding:14px 14px 16px;}
+    .postit{width:100%; max-width:240px;}
   }
 
   @media (max-width: 340px) {
@@ -391,6 +445,34 @@
     <nav class="tab-bar" id="tab-bar"></nav>
   </header>
 
+  <div class="theory">
+    <h2>📝 ¿Qué es un doble negativo?</h2>
+    <p>En español es normal usar dos negaciones juntas: "no tengo nada", "no vi a nadie", "nunca voy a ningún lado". En <strong>inglés estándar</strong> esto NO se permite: la idea solo se niega <strong>una vez</strong>. Traducir literalmente del español es la causa número uno del doble negativo, un error clásico de hispanohablantes.</p>
+
+    <h3>📐 Las dos reglas de oro</h3>
+    <div class="dn-rules">
+      <div class="dn-rule">
+        <span class="dn-num">1</span>
+        <div><strong>Si el verbo ya está negado</strong> (don't, doesn't, didn't, isn't, can't, won't...), el resto de la oración va en <strong>afirmativo</strong>: usa <em>any, anybody, anything, anywhere, ever, either</em>.<br><span class="dn-ex">✅ I don't have any money. &nbsp;|&nbsp; I don't ever go there.</span></div>
+      </div>
+      <div class="dn-rule">
+        <span class="dn-num">2</span>
+        <div><strong>Si el sujeto o adverbio ya es negativo</strong> (no, nobody, nothing, nowhere, none, never, neither), el verbo va en <strong>afirmativo</strong>: no le agregues otro "don't/doesn't".<br><span class="dn-ex">✅ Nobody came. &nbsp;|&nbsp; She never eats meat.</span></div>
+      </div>
+    </div>
+
+    <h3>⚠️ Errores comunes</h3>
+    <div class="postits">
+      <div class="postit"><b>Auxiliar + "no"</b><span class="wrong">❌ I don't have no money.</span><span class="right">✅ I don't have any money.</span></div>
+      <div class="postit"><b>No-word + verbo negado</b><span class="wrong">❌ Nobody didn't come.</span><span class="right">✅ Nobody came.</span></div>
+      <div class="postit"><b>Never + don't</b><span class="wrong">❌ I don't never go there.</span><span class="right">✅ I don't ever go there.</span></div>
+      <div class="postit"><b>Neither después de negativo</b><span class="wrong">❌ I don't like it neither.</span><span class="right">✅ I don't like it either.</span></div>
+      <div class="postit"><b>No-word + "no"</b><span class="wrong">❌ I can't find it nowhere.</span><span class="right">✅ I can't find it anywhere.</span></div>
+    </div>
+
+    <p class="dn-note">🎵 Aunque el doble negativo es "incorrecto" en inglés estándar, es súper común en canciones, blues, rock y dialectos informales — se usa a propósito por el ritmo y la actitud. ¡Lo vas a ver en la última sección de ejercicios!</p>
+  </div>
+
   <div class="wrap">
     <div id="tab-content-container"></div>
 
@@ -399,10 +481,14 @@
     </div>
   </div>
 
+  <div class="back-home">
+    <a href="./index.html">← Ver otros ejercicios</a>
+  </div>
+
   <div class="academy">
     <h2>🎓 ¿Quieres ir más rápido?</h2>
     <p>Aprende inglés con clases personalizadas 1‑a‑1, pensadas para tu nivel y tus objetivos. Empieza con una clase diagnóstica gratis.</p>
-    <a class="academy-btn" href="https://fabio-english-academy.vercel.app/" target="_blank" rel="noopener">Conoce Your English Buddy Academy →</a>
+    <a class="academy-btn" href="https://web-production-5312d.up.railway.app/" target="_blank" rel="noopener">Conoce Your English Buddy Academy →</a>
   </div>
 
   <footer class="site-footer">
@@ -495,6 +581,20 @@ const SECTIONS = [
       { s:"I can't find my keys ___.", o:["anywhere","nowhere","somewhere","everywhere"], c:0, e:"Como \"can't\" ya negó el verbo, usamos \"anywhere\": \"I can't find my keys anywhere\". \"Nowhere\" duplicaría la negación (\"I can't find them nowhere\" está mal)." },
       { s:"You shouldn't say ___ like that to anyone.", o:["anything","nothing","something","everything"], c:0, e:"\"Shouldn't\" ya es negativo, así que usamos \"anything\": \"You shouldn't say anything like that\". Con \"nothing\" sería doble negativo." },
       { s:"There's ___ reason to worry; everything is fine.", o:["no","any","not","none"], c:0, e:"Aquí el verbo \"There's\" está en AFIRMATIVO (no hay auxiliar negado), así que la negación la aporta directamente \"no\": \"There's no reason to worry\". \"Any\" solo se usa cuando el verbo ya está negado (\"There isn't any reason\")." }
+    ]
+  },
+  {
+    key: 'songs',
+    icon: '🎵',
+    title: 'Frases de Canciones Famosas',
+    formula: '<strong>Dato curioso:</strong> el doble negativo es "incorrecto" en inglés estándar, pero es MUY común en canciones, blues, rock y dialectos informales — se usa a propósito por ritmo y actitud. Aquí verás frases reales de canciones famosas.',
+    instructions: 'Completa cada frase con la palabra que realmente usa la canción (aunque sea un doble negativo). La explicación te da la versión de inglés estándar.',
+    exercises: [
+      { s:"🎵 Pink Floyd cantaba en \"Another Brick in the Wall, Part 2\" (1979): \"We don't need ___ education.\"", o:["any","no","some","not"], c:1, e:"La letra real dice \"no\": \"We don't need no education\", un doble negativo intencional usado como protesta contra la educación rígida. En inglés estándar sería \"We don't need any education\"." },
+      { s:"🎵 The Rolling Stones cantaban en \"(I Can't Get No) Satisfaction\" (1965): \"I can't get ___ satisfaction.\"", o:["any","no","some","none"], c:1, e:"El título ya lo anuncia: \"I can't get no satisfaction\" es un doble negativo clásico del rock. En inglés estándar: \"I can't get any satisfaction\"." },
+      { s:"🎵 Bill Withers cantaba en \"Ain't No Sunshine\" (1971): \"___ no sunshine when she's gone.\"", o:["There's","Ain't","Isn't","Doesn't"], c:1, e:"\"Ain't\" es una contracción informal de \"is not / am not\" (y a veces \"have not\"), y aquí se combina con \"no\" formando otro doble negativo típico del soul y el blues. En inglés estándar: \"There's no sunshine when she's gone\"." },
+      { s:"🎵 Bachman-Turner Overdrive cantaba en \"You Ain't Seen Nothing Yet\" (1974): \"You ain't seen ___ yet.\"", o:["anything","nothing","something","everything"], c:1, e:"La letra real combina \"ain't\" con \"nothing\": \"You ain't seen nothing yet\", doble negativo muy famoso del rock clásico. En inglés estándar: \"You haven't seen anything yet\"." },
+      { s:"🎵 Marvin Gaye & Tammi Terrell cantaban en \"Ain't No Mountain High Enough\" (1967): \"___ no mountain high enough.\"", o:["There's","Ain't","Isn't","Doesn't"], c:1, e:"Otra vez \"ain't\" + \"no\": doble negativo estilístico muy común en el soul clásico. En inglés estándar: \"There's no mountain high enough\" (ninguna montaña es demasiado alta para separarnos)." }
     ]
   }
 ];
